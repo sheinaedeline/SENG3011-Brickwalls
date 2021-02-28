@@ -1,0 +1,355 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Disease-Reports-API",
+    "version": "1.0",
+    "description": "This API utilises a web scraper to extract data from http://outbreaknewstoday.com/ to generate disease reports. This API outputs disease reports in JSON format and the output can be filtered by adding additional parameters to the request."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/getReportID/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "The id parameter is used to search for the corresponding disease report with the same id."
+        }
+      ],
+      "get": {
+        "summary": "Get disease report by id",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "Disease report retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Disease-Report"
+                },
+                "examples": {
+                  "Get ID 1 disease report": {
+                    "$ref": "#/components/examples/disease-report"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Disease report ID not found"
+          }
+        },
+        "operationId": "get-report-ID",
+        "description": "Retrieve the disease report with the corresponding id",
+        "parameters": []
+      }
+    },
+    "/getReportCountry/{country}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "country",
+          "in": "path",
+          "required": true,
+          "description": "Is used to search for disease reports with the corresponding country."
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "Disease reports retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mult-reports"
+                },
+                "examples": {
+                  "Get Australia disease reports": {
+                    "$ref": "#/components/examples/Country-disease-report"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Country not found"
+          }
+        },
+        "operationId": "get-report-country",
+        "description": "Retrieve disease reports with the corresponding country. Multiple disease reports can be outputed."
+      }
+    },
+    "/getReportDisease/{disease}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "disease",
+          "in": "path",
+          "required": true,
+          "description": "Is used to search for disease reports with the corresponding disease."
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "Disease reports retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mult-reports"
+                },
+                "examples": {
+                  "Get coronavirus disease reports": {
+                    "$ref": "#/components/examples/disease-reports"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Disease not found"
+          }
+        },
+        "operationId": "get-report-disease",
+        "description": "Retrieve disease reports with the corresponding country. Multiple disease reports can be outputed."
+      }
+    },
+    "/getReportDate/{date1}/{date2}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "date1",
+          "in": "path",
+          "required": true,
+          "description": "Is the start date of the range to search for disease reports"
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "date2",
+          "in": "path",
+          "required": true,
+          "description": "Is the end date of the range to search for disease reports"
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "Disease reports retrieved"
+          },
+          "400": {
+            "description": "Invalid dates"
+          },
+          "404": {
+            "description": "Disease reports not found"
+          }
+        },
+        "operationId": "get-report-date",
+        "description": "Retrieves a list of disease reports within a range of dates which corresponds to the 2 paramaters. The dates will be inclusive."
+      }
+    },
+    "/addReport": {
+      "put": {
+        "operationId": "put-report",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Disease-Report"
+              },
+              "examples": {
+                "disease report input": {
+                  "$ref": "#/components/examples/disease-report"
+                }
+              }
+            }
+          },
+          "description": "Should provide the disease report to be added."
+        },
+        "description": "Will add the disease report.",
+        "responses": {
+          "200": {
+            "description": "Disease report added"
+          },
+          "400": {
+            "description": "Invalid disease report"
+          }
+        }
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "Disease-Report": {
+        "title": "Disease Report",
+        "type": "object",
+        "description": "Disease reports are the outputs of the API and include the date, country, number of cases and the disease.",
+        "x-examples": {
+          "Australia disease report": {
+            "id": 1,
+            "date": "28/02/2021",
+            "country": "Australia",
+            "cases": 2,
+            "disease": "coronavirus"
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the given user."
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of the found case",
+            "example": "2021-02-28"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country with the disease cases"
+          },
+          "cases": {
+            "type": "integer",
+            "example": 3,
+            "description": "Number of cases of the disease",
+            "minimum": 1
+          },
+          "disease": {
+            "type": "string",
+            "description": "Disease that has infected the country"
+          }
+        }
+      },
+      "Mult-reports": {
+        "title": "Mult-Reports",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Disease-Report"
+            }
+          }
+        },
+        "x-examples": {
+          "Country disease reports": {
+            "id": "string",
+            "data": [
+              {
+                "id": 0,
+                "date": "27/02/2021",
+                "country": "Germany",
+                "cases": 482,
+                "disease": "coronavirus"
+              },
+              {
+                "id": 1,
+                "date": "28/02/2021",
+                "country": "Germany",
+                "cases": 2,
+                "disease": "ebola"
+              }
+            ]
+          },
+          "Disease reports": {
+            "id": "string",
+            "data": [
+              {
+                "id": 0,
+                "date": "27/02/2021",
+                "country": "France",
+                "cases": 291,
+                "disease": "coronavirus"
+              },
+              {
+                "id": 1,
+                "date": "28/02/2021",
+                "country": "Australia",
+                "cases": 1,
+                "disease": "coronavirus"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "examples": {
+      "Country-disease-report": {
+        "value": {
+          "id": "string",
+          "data": [
+            {
+              "id": 0,
+              "date": "2021-02-27",
+              "country": "Germany",
+              "cases": 482,
+              "disease": "coronavirus"
+            },
+            {
+              "id": 1,
+              "date": "2021-02-28",
+              "country": "Germany",
+              "cases": 2,
+              "disease": "ebola"
+            }
+          ]
+        }
+      },
+      "disease-reports": {
+        "value": {
+          "id": "string",
+          "data": [
+            {
+              "id": 0,
+              "date": "2021-02-27",
+              "country": "France",
+              "cases": 291,
+              "disease": "coronavirus"
+            },
+            {
+              "id": 1,
+              "date": "2021-02-28",
+              "country": "Australia",
+              "cases": 1,
+              "disease": "coronavirus"
+            }
+          ]
+        }
+      },
+      "disease-report": {
+        "value": {
+          "id": 0,
+          "date": "2021-02-27",
+          "country": "France",
+          "cases": 291,
+          "disease": "coronavirus"
+        }
+      }
+    }
+  }
+}
