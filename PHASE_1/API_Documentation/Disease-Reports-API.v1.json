@@ -198,6 +198,69 @@
         }
       },
       "parameters": []
+    },
+    "/getReportDiseaseCountry/{disease}/{country}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "Disease reports retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mult-reports"
+                },
+                "examples": {
+                  "australia coronavirus reports": {
+                    "value": {
+                      "id": 0,
+                      "data": [
+                        {
+                          "id": 0,
+                          "date": "2021-02-27",
+                          "country": "Australia",
+                          "cases": 3,
+                          "disease": "coronavirus"
+                        },
+                        {
+                          "id": 1,
+                          "date": "2021-02-28",
+                          "country": "Australia",
+                          "cases": 4,
+                          "disease": "coronavirus"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-report-diseasecountry",
+        "description": "Retrieves disease reports with the corresponding disease and country."
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "disease",
+          "in": "path",
+          "required": true,
+          "description": "Is used to search for disease reports with the corresponding disease."
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "country",
+          "in": "path",
+          "required": true,
+          "description": "Is used to search for disease reports with the corresponding country."
+        }
+      ]
     }
   },
   "components": {
