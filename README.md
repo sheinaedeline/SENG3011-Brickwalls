@@ -8,6 +8,10 @@ Z5207001 Vishnu Pillai
 Z5228933 Kshitiz Saini
 Z5190299 Sheina Edeline Tengara
 
+## API
+
+The API is hosted on Azure and can be found here: https://diseasereportapi.azurewebsites.net/
+
 ## Running API on local server
 
 Run the virtual environment
