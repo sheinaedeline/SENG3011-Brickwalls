@@ -12,7 +12,7 @@ Z5190299 Sheina Edeline Tengara
 
 Run the virtual environment
 ```bash
-source virt/bin/activate
+source .venv/bin/activate
 ```
 
 Install requirements
