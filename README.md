@@ -17,7 +17,7 @@ source virt/bin/activate
 
 Install requirements
 ```bash
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Run local server API
