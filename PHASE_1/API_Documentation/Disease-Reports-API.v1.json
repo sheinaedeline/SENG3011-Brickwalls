@@ -3,232 +3,52 @@
   "info": {
     "title": "Disease-Reports-API",
     "version": "1.0",
-    "description": "This API utilises a web scraper to extract data from http://outbreaknewstoday.com/ to generate disease reports. This API outputs disease reports in JSON format and the output can be filtered by adding additional parameters to the request."
+    "description": "This API utilises a web scraper to extract data from http://outbreaknewstoday.com/ and the Australian state government websites to generate articles, disease reports and the restriction in place for each state. This API outputs articles in JSON format and the output can be filtered by adding additional parameters to the request.",
+    "contact": {
+      "name": "Brickwalls Team",
+      "url": "https://github.com/allenwu564/SENG3011-Brickwalls/tree/main",
+      "email": "z5205003@ad.unsw.edu.au"
+    },
+    "termsOfService": "https://github.com/allenwu564/SENG3011-Brickwalls/tree/main"
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "https://diseasereportapi.azurewebsites.net"
     }
   ],
   "paths": {
-    "/getReportID/{id}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "integer"
-          },
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "The id parameter is used to search for the corresponding disease report with the same id."
-        }
-      ],
+    "/articles": {
+      "parameters": [],
       "get": {
         "summary": "Get disease report by id",
         "tags": [],
         "responses": {
           "200": {
-            "description": "Disease report retrieved",
+            "description": "Articles retrieved",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Disease-Report"
+                  "$ref": "#/components/schemas/article"
                 },
                 "examples": {
-                  "Get ID 1 disease report": {
-                    "$ref": "#/components/examples/disease-report"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Disease report ID not found"
-          }
-        },
-        "operationId": "get-report-ID",
-        "description": "Retrieve the disease report with the corresponding id",
-        "parameters": []
-      }
-    },
-    "/getReportCountry/{country}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "country",
-          "in": "path",
-          "required": true,
-          "description": "Is used to search for disease reports with the corresponding country."
-        }
-      ],
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "Disease reports retrieved",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Mult-reports"
-                },
-                "examples": {
-                  "Get Australia disease reports": {
-                    "$ref": "#/components/examples/Country-disease-report"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Country not found"
-          }
-        },
-        "operationId": "get-report-country",
-        "description": "Retrieve disease reports with the corresponding country. Multiple disease reports can be outputed."
-      }
-    },
-    "/getReportDisease/{disease}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "disease",
-          "in": "path",
-          "required": true,
-          "description": "Is used to search for disease reports with the corresponding disease."
-        }
-      ],
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "Disease reports retrieved",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Mult-reports"
-                },
-                "examples": {
-                  "Get coronavirus disease reports": {
-                    "$ref": "#/components/examples/disease-reports"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Disease not found"
-          }
-        },
-        "operationId": "get-report-disease",
-        "description": "Retrieve disease reports with the corresponding country. Multiple disease reports can be outputed."
-      }
-    },
-    "/getReportDate/{date1}/{date2}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "date1",
-          "in": "path",
-          "required": true,
-          "description": "Is the start date of the range to search for disease reports"
-        },
-        {
-          "schema": {
-            "type": "string"
-          },
-          "name": "date2",
-          "in": "path",
-          "required": true,
-          "description": "Is the end date of the range to search for disease reports"
-        }
-      ],
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "Disease reports retrieved"
-          },
-          "400": {
-            "description": "Invalid dates"
-          },
-          "404": {
-            "description": "Disease reports not found"
-          }
-        },
-        "operationId": "get-report-date",
-        "description": "Retrieves a list of disease reports within a range of dates which corresponds to the 2 paramaters. The dates will be inclusive."
-      }
-    },
-    "/addReport": {
-      "put": {
-        "operationId": "put-report",
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Disease-Report"
-              },
-              "examples": {
-                "disease report input": {
-                  "$ref": "#/components/examples/disease-report"
-                }
-              }
-            }
-          },
-          "description": "Should provide the disease report to be added."
-        },
-        "description": "Will add the disease report.",
-        "responses": {
-          "200": {
-            "description": "Disease report added"
-          },
-          "400": {
-            "description": "Invalid disease report"
-          }
-        }
-      },
-      "parameters": []
-    },
-    "/getReportDiseaseCountry/{disease}/{country}": {
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "Disease reports retrieved",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Mult-reports"
-                },
-                "examples": {
-                  "australia coronavirus reports": {
+                  "example-1": {
                     "value": {
-                      "id": 0,
-                      "data": [
+                      "url": "http://outbreaknewstoday.com/typhoid-taiwan-reports-1st-domestic-case-of-2021/",
+                      "date_of_publication": "2020-03-13",
+                      "headline": "Typhoid: Taiwan reports 1st domestic case of 2021",
+                      "main_text": "The Taiwan CDC reported Tuesday the first domestic case of typhoid fever in the country for 2021 which is an illness and outbreak.",
+                      "reports": [
                         {
-                          "id": 0,
-                          "date": "2021-02-27",
-                          "country": "Australia",
-                          "cases": 3,
-                          "disease": "coronavirus"
-                        },
-                        {
-                          "id": 1,
-                          "date": "2021-02-28",
-                          "country": "Australia",
-                          "cases": 4,
-                          "disease": "coronavirus"
+                          "diseases": [
+                            "typhoid"
+                          ],
+                          "syndrome": [
+                            "fever"
+                          ],
+                          "event_date": "2020-03-13",
+                          "locations": [
+                            "Taiwan"
+                          ]
                         }
                       ]
                     }
@@ -236,183 +56,159 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/articlesError"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "timestamp": "2021-03-17",
+                      "status": 400,
+                      "error": "Bad Request",
+                      "message": "Invalid query, please provide both start and end dates",
+                      "path": "/articles",
+                      "client request": "/articles?start=20190701&end=20200901&location=Sydney&keyterms=illness"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
-        "operationId": "get-report-diseasecountry",
-        "description": "Retrieves disease reports with the corresponding disease and country."
-      },
-      "parameters": [
-        {
-          "schema": {
-            "type": "string"
+        "operationId": "articles",
+        "description": "Retrieve articles with the corresponding attributes from the passed parameters",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "20210703",
+              "minLength": 8,
+              "maxLength": 8,
+              "pattern": "\\d{8}"
+            },
+            "in": "query",
+            "name": "start",
+            "description": "Is the start date for the range for collecting articles",
+            "required": true
           },
-          "name": "disease",
-          "in": "path",
-          "required": true,
-          "description": "Is used to search for disease reports with the corresponding disease."
-        },
-        {
-          "schema": {
-            "type": "string"
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 8,
+              "pattern": "\\d{8}",
+              "example": "20000101"
+            },
+            "in": "query",
+            "name": "end",
+            "description": "Is the end date for the range for collecting the articles",
+            "required": true
           },
-          "name": "country",
-          "in": "path",
-          "required": true,
-          "description": "Is used to search for disease reports with the corresponding country."
-        }
-      ]
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 0,
+              "example": "illness,outbreak"
+            },
+            "in": "query",
+            "name": "keyterms",
+            "description": "This input contains a comma separated list of all the key terms you want to get news about. This input can be empty or omitted in the case where the user doesn’t want to restrict his search"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 0,
+              "example": "Sydney"
+            },
+            "in": "query",
+            "name": "location",
+            "description": "Is used to be able to search disease reports by a location name (city/country/state etc.), which is a string to be matched with the content in the disease report."
+          }
+        ]
+      }
     }
   },
   "components": {
     "schemas": {
-      "Disease-Report": {
-        "title": "Disease Report",
+      "article": {
+        "title": "article",
         "type": "object",
-        "description": "Disease reports are the outputs of the API and include the date, country, number of cases and the disease.",
-        "x-examples": {
-          "Australia disease report": {
-            "id": 1,
-            "date": "28/02/2021",
-            "country": "Australia",
-            "cases": 2,
-            "disease": "coronavirus"
-          }
-        },
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "Unique identifier for the given user."
+          "url": {
+            "type": "string"
           },
-          "date": {
-            "type": "string",
-            "format": "date",
-            "description": "Date of the found case",
-            "example": "2021-02-28"
+          "date_of_publication": {
+            "type": "string"
           },
-          "country": {
-            "type": "string",
-            "description": "Country with the disease cases"
+          "headline": {
+            "type": "string"
           },
-          "cases": {
-            "type": "integer",
-            "example": 3,
-            "description": "Number of cases of the disease",
-            "minimum": 1
+          "main_text": {
+            "type": "string"
           },
-          "disease": {
-            "type": "string",
-            "description": "Disease that has infected the country"
+          "reports": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "diseases": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "syndrome": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "event_date": {
+                  "type": "string"
+                },
+                "locations": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
           }
         }
       },
-      "Mult-reports": {
-        "title": "Mult-Reports",
+      "articlesError": {
+        "title": "articlesError",
         "type": "object",
         "properties": {
-          "id": {
+          "timestamp": {
             "type": "string"
           },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Disease-Report"
-            }
-          }
-        },
-        "x-examples": {
-          "Country disease reports": {
-            "id": "string",
-            "data": [
-              {
-                "id": 0,
-                "date": "27/02/2021",
-                "country": "Germany",
-                "cases": 482,
-                "disease": "coronavirus"
-              },
-              {
-                "id": 1,
-                "date": "28/02/2021",
-                "country": "Germany",
-                "cases": 2,
-                "disease": "ebola"
-              }
-            ]
+          "status": {
+            "type": "integer"
           },
-          "Disease reports": {
-            "id": "string",
-            "data": [
-              {
-                "id": 0,
-                "date": "27/02/2021",
-                "country": "France",
-                "cases": 291,
-                "disease": "coronavirus"
-              },
-              {
-                "id": 1,
-                "date": "28/02/2021",
-                "country": "Australia",
-                "cases": 1,
-                "disease": "coronavirus"
-              }
-            ]
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "client_request": {
+            "type": "string"
           }
         }
       }
     },
-    "examples": {
-      "Country-disease-report": {
-        "value": {
-          "id": "string",
-          "data": [
-            {
-              "id": 0,
-              "date": "2021-02-27",
-              "country": "Germany",
-              "cases": 482,
-              "disease": "coronavirus"
-            },
-            {
-              "id": 1,
-              "date": "2021-02-28",
-              "country": "Germany",
-              "cases": 2,
-              "disease": "ebola"
-            }
-          ]
-        }
-      },
-      "disease-reports": {
-        "value": {
-          "id": "string",
-          "data": [
-            {
-              "id": 0,
-              "date": "2021-02-27",
-              "country": "France",
-              "cases": 291,
-              "disease": "coronavirus"
-            },
-            {
-              "id": 1,
-              "date": "2021-02-28",
-              "country": "Australia",
-              "cases": 1,
-              "disease": "coronavirus"
-            }
-          ]
-        }
-      },
-      "disease-report": {
-        "value": {
-          "id": 0,
-          "date": "2021-02-27",
-          "country": "France",
-          "cases": 291,
-          "disease": "coronavirus"
-        }
-      }
-    }
+    "examples": {},
+    "securitySchemes": {},
+    "responses": {}
   }
 }
