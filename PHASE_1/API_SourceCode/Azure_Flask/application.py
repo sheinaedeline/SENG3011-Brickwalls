@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from datetime import datetime
 import pymongo
+from geopy.geocoders import Nominatim
 
 app = Flask(__name__)
 
@@ -12,9 +13,12 @@ groups = database["articles"]
 def hello():
     return render_template("page.html")
 
+#used to check if the start and end dates are valid
+#will check if they exist and if start date is before end date 
 def checkInvalidDate(requestData):
     found_start = False
     found_end = False
+    #checks if both start and end paramters exist
     for elem in requestData:
         if elem == "start":
             found_start = True
@@ -25,6 +29,7 @@ def checkInvalidDate(requestData):
     
     start = datetime.strptime(requestData["start"], "%Y%m%d").date()
     end = datetime.strptime(requestData["end"], "%Y%m%d").date()
+    #checks if start date is before end date
     if start > end:
         return "Invalid query, end date must be after start date"
     else:
@@ -105,23 +110,33 @@ def getReport():
     #From the collected articles with the correct dates or correct key terms, get all articles with disease reports with the correct location.
     #This is the same case as the keyterms, as it is optional and can be skipped. It can also be searched for straight after checking for correct date if no keyterm was passed.
     #Will check all reports in the article and check if the report location is the same as the location query.
-
-    #TODO MIGHT NEED TO CHANGE TO BE ABLE TO DETERMINE CITIES, STATES AND COUNTRIES
-    #E.G. SEARCHING AUSTRALIA MIGHT GET ALL ARTICLES WITH LOCATIONS OF AUSTRALIAN CITIES
+    #Added functionality so that now searching for a country will also get reports with locations of cities and states within the country
+    geolocator = Nominatim(user_agent = "geoapiExercises")
 
     correct_location = []
     if "location" in data:
+        #for each article in the remaining list of articles
         for article in result:
             article_added = False
+            #check each report for each article
             for report in article["reports"]:
                 if article_added:
                     continue
+                #check each location within each report
                 for location in report["locations"]:
                     if article_added:
                         continue
-                    if data["location"].lower() in location.lower():
-                        correct_location.append(article)
-                        article_added = True
+                    #gets city, state and country info from the report location
+                    #e.g. passing Sydney will return Sydney, New South Wales, Australia
+                    loc = geolocator.geocode(location, language='en')
+                    geo_locations = str(loc).split(', ')
+                    #check each city, state and country within the geo_locations
+                    for geo_location in geo_locations:
+                        if article_added:
+                            continue
+                        if data["location"].lower() in geo_location.lower():
+                            correct_location.append(article)
+                            article_added = True
         result = correct_location
 
     return jsonify(result)
