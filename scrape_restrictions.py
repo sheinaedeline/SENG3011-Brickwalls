@@ -220,18 +220,15 @@ def scrape_wa_restriction():
         waData.append(waItem)
     print(effectiveDate)
 
-  
 
 
-
-
-# scrape_nsw_restriction()
-# scrape_act_restriction()
-# scrape_nt_restriction()
-# scrape_qld_restriction()
-# scrape_sa_restriction()
-# scrape_tas_restriction()
-# scrape_vic_restriction()
+scrape_nsw_restriction()
+scrape_act_restriction()
+scrape_nt_restriction()
+scrape_qld_restriction()
+scrape_sa_restriction()
+scrape_tas_restriction()
+scrape_vic_restriction()
 scrape_wa_restriction()
 
 with open("actTravelRestriction.json", "w") as actOutfile:
