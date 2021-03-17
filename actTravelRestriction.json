@@ -1,1 +1,71 @@
-[]
+[
+  {
+    "action 1": "Avoid COVID-affected areas - check the COVID website of the state or territory you are travelling to. If you are welcoming relatives or visitors from interstate, please ask them not to come if they are travelling from an area with a recent case or are feeling unwell."
+  },
+  {
+    "action 2": "Behave in a COVID-safe way - be vigilant with\u00a0hand and respiratory hygiene, maintain\u00a0physical distancing from other groups, and stay home if feeling unwell."
+  },
+  {
+    "action 3": "Check back when you get home - monitor the COVID website of the state or territory you visited to see if they had any cases, for two weeks after your return. Follow the website\u2019s advice about testing and self-isolation. If you feel unwell with COVID symptoms while away or when you return, please get tested immediately and self-isolate until you get the result."
+  },
+  {
+    "rule1": "New COVID-19 exposure sites in Greater Brisbane. Check the Queensland Health website for exposures sites and follow the health advice.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule2": "Do not travel if you are unwell.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule3": "Under a Public Health Direction effective 11.59pm on Friday 22 January 2021, face masks are\u00a0mandatory for people aged 12 and over while inside the Canberra Airport terminal and during domestic commercial flights in and out of Canberra. Find out more on the Protect yourself page.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule4": "If you are travelling from COVID-19 affected areas, reconsider your need to travel to the ACT.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule5": "Travel advice can change rapidly if COVID-19 cases appear. You may need to cancel or amend your travel plans on short notice.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule6": "Stay up to date with the latest travel advice. Be aware of restrictions in your destination and when you return to the ACT. Check the advice per state and territory for more information.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule7": "Unless travel is restricted, ACT Health does not declare areas safe or unsafe for travel. Instead we provide guidance, taking into account the COVID-19 situation in other states and territories.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule8": "If you develop COVID-19 symptoms while away or after returning to the ACT,\u00a0get tested immediately.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule9": "Your travel may impact your ability to work in or access high-risk settings (like aged care or health care facilities). Please visit the\u00a0Chief Health Officer alerts page for more information.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule10": "While travelling, use the ABCs of protecting yourself, your family and our community from COVID-19:",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule11": "More travel advice is available on the\u00a0Australian Department of Health website.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule12": "For more information, contact the ACT\u2019s COVID-19 Helpline on\u00a0(02) 6207 7244 between 8am and 8pm daily.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule13": "Select the state or territory you are travelling to or from for more information and specific requirements.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule14": "Please note: select the state or territory that you're travelling from for information about travelling to the ACT.",
+    "date effective": "March 13 2021"
+  },
+  {
+    "rule15": "We acknowledge the Traditional Custodians of the ACT, the Ngunnawal people. We acknowledge and respect their continuing culture and the contribution they make to the life of this city and this region.",
+    "date effective": "March 13 2021"
+  }
+]
