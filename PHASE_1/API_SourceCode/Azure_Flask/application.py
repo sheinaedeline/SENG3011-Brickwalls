@@ -148,7 +148,7 @@ def articles():
     return jsonify(result)
 
 #gets the current restrictions of each state
-#Can pass multiple or no states. Passing no states will get the restrictions of all states.
+#Can pass multiple or no states. Passing no states parameter will get the restrictions of all states.
 #e.g. /restrictions?states=nsw,vic
 #gets all restrictions of nsw and vic
 @app.route('/restrictions', methods=["GET"])
@@ -197,15 +197,24 @@ def restrictions():
                 }
                 return error
         return jsonify(result)
-    error = {
-        "timestamp": datetime.now(),
-        "status": 400,
-        "error":"Bad Request",
-        "message": "Invalid query, states parameter is required",
-        "path": request.path,
-        "client request": request.full_path
-    }
-    return error
+    else:   
+        with open("./state_data/nswTravelRestriction.json") as json_file:
+            result.append(json.load(json_file))
+        with open("./state_data/vicTravelRestriction.json") as json_file:
+            result.append(json.load(json_file))
+        with open("./state_data/actTravelRestriction.json") as json_file:
+            result.append(json.load(json_file))
+        with open("./state_data/ntTravelRestriction.json") as json_file:
+            result.append(json.load(json_file))
+        with open("./state_data/qldTravelRestriction.json") as json_file:
+            result.append(json.load(json_file))
+        with open("./state_data/saTravelRestriction.json") as json_file:
+            result.append(json.load(json_file))  
+        with open("./state_data/tasTravelRestriction.json") as json_file:
+            result.append(json.load(json_file)) 
+        with open("./state_data/waTravelRestriction.json") as json_file:
+            result.append(json.load(json_file))
+        return jsonify(result)
 
 #TEST
 #const fetch = require("node-fetch");
