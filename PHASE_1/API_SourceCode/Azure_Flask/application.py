@@ -26,9 +26,11 @@ def checkInvalidDate(requestData):
             found_end = True
     if not found_start or not found_end:
         return "Invalid query, please provide both start and end dates"
-    
-    start = datetime.strptime(requestData["start"], "%Y%m%d").date()
-    end = datetime.strptime(requestData["end"], "%Y%m%d").date()
+    try:
+        start = datetime.strptime(requestData["start"], "%Y%m%d").date()
+        end = datetime.strptime(requestData["end"], "%Y%m%d").date()
+    except ValueError:
+        return "Invalid query, date is invalid. Format must be YYYYmmdd"
     #checks if start date is before end date
     if start > end:
         return "Invalid query, end date must be after start date"
