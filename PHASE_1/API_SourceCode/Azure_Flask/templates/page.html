@@ -14,35 +14,55 @@
             <div>
                 <h3>GET</h3>
                 <div class="endpoint">
-                    <h4>/getReport?id={id}&date={date}&country={country}&cases={cases}&disease={disease}</h4>
+                    <h4>/articles?start={start}&end={end}&keyterms={keyterms}&location={location}</h4>
                     <p>
-                        This endpoint retrieves disease reports from within the database that will correspond to the queries.
+                        This endpoint retrieves articles from within the database that will correspond to the queries.
                         Each query is optional and act as filters when searching for disease reports. Parsing no parameters will return all disease reports.
                     </p>
                     <div>
-                        <p class="example">Example</p>
-                        <p>Query: /getReport?country=Australia&disease=coronavirus</p>
-                        <p>Return:</p>
-                        <p> [{"id": 1, "date": "2021-2-1", "country": "Australia", "cases": 5, "disease": "coronavirus"}, <br>
-                            {"id": 2, "date": "2021-2-24", "country": "Australia", "cases": 1, "disease": "coronavirus"}]</p>
+                        <p class="example">Path Parameters</p>
+                        <p class="param">start (required)</p>
+                            <p> 
+                                Is utilised in determining what articles to return and refers to the starting range of dates.
+                                Must be in the format %YYYY%mm%dd e.g. 20210317 is equivalent to 17/03/2021
+                            </p>
+                        <p class="param">end (required):</p>
+                            <p>
+                                Is utilised in determing what articles to return and refers to the ending range of dates.
+                                Must be in the format %YYYY%mm%dd e.g. 20210317 is equivalent to 17/03/2021
+                            </p>
+                        <p class="param">keyterms (optional):</p>
+                            <p>
+                                This input contains a comma separated list of all the key terms you want to get news about.
+                                This input can be empty or omitted in the case where the user doesn’t want to restrict his search.
+                                Must be in the formate term,term e.g. illness,outbreak searches for both illness and outbreak
+                            </p>
+                        <p class="param">location (optional):</p>
+                            <p>
+                                User can be able to search disease reports by a location name (city/country/state etc.), which
+                                is a string to be matched with the content in the disease report.
+                            </p>
                     </div>
-                </div>
-            </div>
-            <div>
-                <h3>PUT</h3>
-                <div class="endpoint">
-                    <h4>/addReport</h4>
-                    <p>This endpoint adds a disease report into the database. 
-                       A corresponding JSON file must be passed in which it will be added to the database.
-                    </p>
                     <div>
                         <p class="example">Example</p>
-                        <p>Query: /addReport {"id": 1, "date": "2021-2-1", "country": "Australia", "cases": 5, "disease": "coronavirus"}</p>
+                        <p>Query: /articles?start=20190701&end=20200901&location=Sydney&keyterms=illness</p>
                         <p>Return:</p>
-                        <p> 400 OK</p>
+                        <pre> 
+                        [{
+                            url: "www.example.com",
+                            date_of_publication: "2020-03-01", 
+                            headline: "COVID found in Sydney", 
+                            main_text: "example text", 
+                            reports: [{
+                                diseases: ["COVID"], 
+                                syndromes: ["example syndrome"], 
+                                event_date: "2020-03-01", 
+                                locations: ["Sydney"]
+                            }]
+                        }]
+                    </pre>
                     </div>
                 </div>
-                
             </div>
         </div>
     </body>

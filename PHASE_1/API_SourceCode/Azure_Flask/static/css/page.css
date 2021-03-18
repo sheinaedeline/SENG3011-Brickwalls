@@ -31,6 +31,10 @@ body {
     padding: 20px;
 }
 
+.param {
+    font-weight: bold
+}
+
 .body {
     width: 60%;
     margin: auto;
