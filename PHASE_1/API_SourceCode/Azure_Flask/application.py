@@ -167,7 +167,7 @@ def articles():
         "status": 200,
         "data": result,
     }
-
+    logFile(request.full_path, time, 200)
     return jsonify(resultMsg)
 
 #gets the current restrictions of each state
@@ -176,6 +176,7 @@ def articles():
 #gets all restrictions of nsw and vic
 @app.route('/restrictions', methods=["GET"])
 def restrictions():
+    time = datetime.now()
     data = request.args
     result = []
     if "states" in data:
@@ -218,8 +219,21 @@ def restrictions():
                     "path": request.path,
                     "client request": request.full_path
                 }
+                logFile(request.full_path, time, 400)
                 return error, 400
-        return jsonify(result)
+        endTime = datetime.now()
+        timeTaken = endTime - time
+        #log info with data
+        resultMsg = {
+            "team_name": "Team Brickwalls",
+            "time": str(endTime),
+            "time_taken": str(timeTaken),
+            "endpoint": request.full_path,
+            "status": 200,
+            "data": result,
+        }
+        logFile(request.full_path, time, 200)
+        return jsonify(resultMsg)
     else:   
         with open("./state_data/nswTravelRestriction.json") as json_file:
             result.append(json.load(json_file))
@@ -237,7 +251,20 @@ def restrictions():
             result.append(json.load(json_file)) 
         with open("./state_data/waTravelRestriction.json") as json_file:
             result.append(json.load(json_file))
-        return jsonify(result)
+
+        endTime = datetime.now()
+        timeTaken = endTime - time
+        #log info with data
+        resultMsg = {
+            "team_name": "Team Brickwalls",
+            "time": str(endTime),
+            "time_taken": str(timeTaken),
+            "endpoint": request.full_path,
+            "status": 200,
+            "data": result,
+        }
+        logFile(request.full_path, time, 200)
+        return jsonify(resultMsg)
 
 #TEST
 #const fetch = require("node-fetch");
@@ -265,6 +292,7 @@ def scrape_all():
     scrape_wa_restriction()
     return
 
+#Create child process to scrape restrictions everyday at 1am
 pid=os.fork()
 if not pid:
     #child
