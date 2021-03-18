@@ -138,7 +138,6 @@ def getReport():
                             correct_location.append(article)
                             article_added = True
         result = correct_location
-
     return jsonify(result)
 
 #TEST
