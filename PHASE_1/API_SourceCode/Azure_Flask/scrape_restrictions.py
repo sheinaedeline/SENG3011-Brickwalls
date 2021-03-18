@@ -38,7 +38,7 @@ def scrape_nsw_restriction():
         r = rule.text.strip()
         nswItem['rule ' + str(count)] = r
         count += 1
-        nswData["rules"].append(nswItem)
+        nswData["rules"].append(r)
     # rule = restriction.text.strip()
     # for line in rule.splitlines():
     #     print(line)
