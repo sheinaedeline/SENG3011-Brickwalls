@@ -42,7 +42,7 @@ def checkInvalidDate(requestData):
 #will return all articles between 1/7/2019 and 1/9/2020, have disease reports within Sydney and have the keyterm "illness"
 
 @app.route('/articles', methods=["GET"])
-def getReport():
+def articles():
     data = request.args
     result = []
     error_msg = checkInvalidDate(data)
