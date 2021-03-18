@@ -17,10 +17,10 @@
                     <h4>/articles?start={start}&end={end}&keyterms={keyterms}&location={location}</h4>
                     <p>
                         This endpoint retrieves articles from within the database that will correspond to the queries.
-                        Each query is optional and act as filters when searching for disease reports. Parsing no parameters will return all disease reports.
+                        The start and end parameters are required, while the rest are optional and will allow for further filtering of results.
                     </p>
                     <div>
-                        <p class="example">Path Parameters</p>
+                        <p class="example">Query Parameters</p>
                         <p class="param">start (required)</p>
                             <p> 
                                 Is utilised in determining what articles to return and refers to the starting range of dates.
@@ -48,18 +48,78 @@
                         <p>Query: /articles?start=20190701&end=20200901&location=Sydney&keyterms=illness</p>
                         <p>Return:</p>
                         <pre> 
-                        [{
-                            url: "www.example.com",
-                            date_of_publication: "2020-03-01", 
-                            headline: "COVID found in Sydney", 
-                            main_text: "example text", 
-                            reports: [{
-                                diseases: ["COVID"], 
-                                syndromes: ["example syndrome"], 
-                                event_date: "2020-03-01", 
-                                locations: ["Sydney"]
-                            }]
-                        }]
+[{
+    url: "www.example.com",
+    date_of_publication: "2020-03-01", 
+    headline: "COVID found in Sydney", 
+    main_text: "example text", 
+    reports: [{
+        diseases: ["COVID"], 
+        syndromes: ["example syndrome"], 
+        event_date: "2020-03-01", 
+        locations: ["Sydney"]
+    }]
+}]
+                    </pre>
+                    </div>
+                </div>
+                <div class="endpoint">
+                    <h4>/restrictions?states={states}</h4>
+                    <p>
+                        This endpoint retrieves restriction rules utilising the webscraper that will extract data from state government websites.
+                        The restrictions can be filtered by providing the states parameter which is optional. Passing no parameters will return all restrictions for all states.
+                        Currently only supporting Australian states (New South Wales, Victoria, Queensland, Northern Territory, Western Australia, South Australia, Tasmania and Australian Capital Territory)
+                    </p>
+                    <div>
+                        <p class="example">Query Parameters</p>
+                        <p class="param">states (optional)</p>
+                            <p> 
+                                Is utilised in determining what restrictions from what states are to be return.
+                                Possible inputs are NSW, ACT, NT, QLD, SA, TAS, VIC, WA and ACT. e.g. QLD is equivalent to Queensland.
+                                Multiple inputs are possible and is done by separating each state with a comma and no space. e.g. NSW,QLD
+                            </p>
+                    </div>
+                    <div>
+                        <p class="example">Example</p>
+                        <p>Query: /articles?states=NSW</p>
+                        <p>Return:</p>
+                        <pre> 
+{
+    "state": "New South Wales",
+    "rules": [
+        {
+        "rule 1": "Wear a face mask. Wearing a mask is mandatory on public transport in the Greater Sydney,<br> 
+        Blue Mountains, Central Coast and Wollongong areas. Children 12 years and under are exempt but <br>
+        encouraged to wear a face mask. Mask must be worn on the concourse, at coach/bus stops, and while travelling. <br>
+        Penalties will apply."
+        },
+        {
+        "rule 2": "Plan ahead and avoid travelling in the busiest times if you can. If you are not already <br>
+        using public transport in the peak, please do not start now. Services are already close to capacity to <br>
+        allow for physical distancing at these times. Off peak times are between 10am and 3pm."
+        },
+        {
+        "rule 3": "Check the capacity of services before you travel with the Trip Planner, transport<br>
+            apps or social media to see which services have space available to maintain physical distancing."
+        },
+        {
+        "rule 4": "Practise good personal hygiene and maintain physical distancing."
+        },
+        {
+        "rule 5": "Look for the green dots. These have been placed to show you the safest places to sit and stand."
+        },
+        {
+        "rule 6": "Observe capacity limits: physical distancing capacity limits on services means you may <br>
+        be asked to wait for the next service.",
+        "date effective": "2021-01-29T12:00:00Z"
+        },
+        {
+        "rule 6": "Observe capacity limits: physical distancing capacity limits on services means you may be <br>
+        asked to wait for the next service.",
+        "date effective": "2021-01-29T12:00:00Z"
+        }
+    ]
+}
                     </pre>
                     </div>
                 </div>
