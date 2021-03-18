@@ -1,11 +1,11 @@
-[
-  {
-    "state": "Northern Territory"
-  },
-  {
-    "rule 1": "fill in a Border Entry Form"
-  },
-  {
-    "rule 2": "complete 14 days of mandatory supervised quarantine at your own expense*, if you have recently been in an active declared COVID-19 hot spot. This includes children returning from a hotspot."
-  }
-]
+{
+  "state": "Northern Territory",
+  "rules": [
+    {
+      "rule 1": "fill in a Border Entry Form"
+    },
+    {
+      "rule 2": "complete 14 days of mandatory supervised quarantine at your own expense*, if you have recently been in an active declared COVID-19 hot spot. This includes children returning from a hotspot."
+    }
+  ]
+}
