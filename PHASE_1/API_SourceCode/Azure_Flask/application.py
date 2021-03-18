@@ -1,7 +1,12 @@
 from flask import Flask, request, jsonify, render_template
-from datetime import datetime
+from datetime import datetime, timedelta
 import pymongo
+import json
+import schedule
+import os
+import time
 from geopy.geocoders import Nominatim
+from scrape_restrictions import scrape_act_restriction, scrape_nsw_restriction, scrape_nt_restriction, scrape_qld_restriction, scrape_sa_restriction, scrape_tas_restriction, scrape_vic_restriction, scrape_wa_restriction
 
 app = Flask(__name__)
 
@@ -48,7 +53,7 @@ def articles():
     error_msg = checkInvalidDate(data)
     if error_msg:
         error = {
-            "timestamp": datetime.strptime(str(datetime.now().strftime("%Y%m%d")), "%Y%m%d"),
+            "timestamp": datetime.now(),
             "status": 400,
             "error":"Bad Request",
             "message": error_msg,
@@ -142,11 +147,70 @@ def articles():
         result = correct_location
     return jsonify(result)
 
+#gets the current restrictions of each state
+#Can pass multiple or no states. Passing no states will get the restrictions of all states.
+#e.g. /restrictions?states=nsw,vic
+#gets all restrictions of nsw and vic
+@app.route('/restrictions', methods=["GET"])
+def restrictions():
+    data = request.args
+    result = []
+    if "states" in data:
+        #split the parameter and remove duplicates
+        states = data["states"].split(",")
+        states = [state.lower() for state in states]
+        states = list(dict.fromkeys(states))
+        #for each state in the query add the restrictions into the result
+        for state in states:
+            if state.lower() == "nsw":
+                with open("./state_data/nswTravelRestriction.json") as json_file:
+                    result.append(json.load(json_file))
+            elif state.lower() == "vic":
+                with open("./state_data/vicTravelRestriction.json") as json_file:
+                    result.append(json.load(json_file))
+            elif state.lower() == "act":
+                with open("./state_data/actTravelRestriction.json") as json_file:
+                    result.append(json.load(json_file))
+            elif state.lower() == "nt":
+                with open("./state_data/ntTravelRestriction.json") as json_file:
+                    result.append(json.load(json_file))
+            elif state.lower() == "qld":
+                with open("./state_data/qldTravelRestriction.json") as json_file:
+                    result.append(json.load(json_file))
+            elif state.lower() == "sa":
+                with open("./state_data/saTravelRestriction.json") as json_file:
+                    result.append(json.load(json_file))
+            elif state.lower() == "tas":
+                with open("./state_data/tasTravelRestriction.json") as json_file:
+                    result.append(json.load(json_file))
+            elif state.lower() == "wa":
+                with open("./state_data/waTravelRestriction.json") as json_file:
+                    result.append(json.load(json_file))
+            else:
+                error = {
+                    "timestamp": datetime.now(),
+                    "status": 400,
+                    "error":"Bad Request",
+                    "message": "Invalid query, invalid states parameter value. Must be nsw, vic, act, nt, qld, sa, tas or wa. e.g. states=wa,nsw",
+                    "path": request.path,
+                    "client request": request.full_path
+                }
+                return error
+        return jsonify(result)
+    error = {
+        "timestamp": datetime.now(),
+        "status": 400,
+        "error":"Bad Request",
+        "message": "Invalid query, states parameter is required",
+        "path": request.path,
+        "client request": request.full_path
+    }
+    return error
+
 #TEST
 #const fetch = require("node-fetch");
-#const response = fetch("http://127.0.0.1:5000/reports?start=20200317&end=20210317")
+#const response = fetch("http://127.0.0.1:5000/articles?start=20200317&end=20210317")
 
-#DELETE ADD REPORT ENDPOINT
 #TODO REPLACE WITH WEBSCRAPER ADDING ARTICLE EVERY ~24 HOURS
 #@app.route('/addReport', methods=["PUT"])
 #def addReport():
@@ -157,6 +221,29 @@ def articles():
 #    groups.insert_one(data)
 #    return "Inserted Report to database", 200
 
+def scrape_all():
+    #scrape all state restrictions
+    scrape_act_restriction()
+    scrape_nsw_restriction()
+    scrape_nt_restriction()
+    scrape_qld_restriction()
+    scrape_sa_restriction()
+    scrape_tas_restriction()
+    scrape_vic_restriction()
+    scrape_wa_restriction()
+    return
+
+pid=os.fork()
+if not pid:
+    #child
+    #scrape every day at 1am
+    schedule.every().day.at("01:00").do(scrape_all)
+    while True:
+        schedule.run_pending()
+        #wait 1 min
+        time.sleep(60) 
+
+scrape_all()
 
 if __name__ == '__main__':
     app.debug = True
