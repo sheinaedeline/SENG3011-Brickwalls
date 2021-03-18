@@ -13,10 +13,17 @@ app = Flask(__name__)
 client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.rmrdh.mongodb.net/test?retryWrites=true&w=majority")
 database = client["database"]
 groups = database["articles"]
+log_file = database["log_file"]
 
 @app.route('/')
 def hello():
     return render_template("page.html")
+
+def logFile(endpoint, startTime, status):
+    endTime = datetime.now()
+    timeTook = endTime - startTime
+    json_file = open("log_file.txt", "a")
+    json_file.write("ENDPOINT: [" + endpoint + "] CURRENT TIME: " + " [" + str(endTime) + "] " + "TIME TAKEN: [" + str(timeTook) + "] STATUS: [" + str(status) + "]\n")
 
 #used to check if the start and end dates are valid
 #will check if they exist and if start date is before end date 
@@ -48,6 +55,7 @@ def checkInvalidDate(requestData):
 
 @app.route('/articles', methods=["GET"])
 def articles():
+    time = datetime.now()
     data = request.args
     result = []
     error_msg = checkInvalidDate(data)
@@ -60,7 +68,8 @@ def articles():
             "path": request.path,
             "client request": request.full_path
         }
-        return error
+        logFile(request.full_path, time, 400)
+        return error, 400
     
     #Get all articles within the specified date
     correct_date = []
@@ -146,7 +155,20 @@ def articles():
                             correct_location.append(article)
                             article_added = True
         result = correct_location
-    return jsonify(result)
+    
+    endTime = datetime.now()
+    timeTaken = endTime - time
+    #log info with data
+    resultMsg = {
+        "team_name": "Team Brickwalls",
+        "time": str(endTime),
+        "time_taken": str(timeTaken),
+        "endpoint": request.full_path,
+        "status": 200,
+        "data": result,
+    }
+
+    return jsonify(resultMsg)
 
 #gets the current restrictions of each state
 #Can pass multiple or no states. Passing no states parameter will get the restrictions of all states.
@@ -196,7 +218,7 @@ def restrictions():
                     "path": request.path,
                     "client request": request.full_path
                 }
-                return error
+                return error, 400
         return jsonify(result)
     else:   
         with open("./state_data/nswTravelRestriction.json") as json_file:
