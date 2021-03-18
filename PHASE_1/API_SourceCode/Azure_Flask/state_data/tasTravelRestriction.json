@@ -1,53 +1,53 @@
-[
-  {
-    "state": "Tasmania"
-  },
-  {
-    "title": "Coming to Tasmania",
-    "rule 1": "Important information for all travellers interested in coming to Tasmania, including the conditions and processes for entering the State.",
-    "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/coming-to-tasmania",
-    "date effective": "01 Mar 2021 12:39pm"
-  },
-  {
-    "title": "Essential Travellers",
-    "rule 2": "Travellers who have spent time in a medium or high-risk area in the 14 days prior to arrival in Tasmania can apply to enter the State as an Essential Traveller.",
-    "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/essential-travellers",
-    "date effective": "01 Mar 2021 12:39pm"
-  },
-  {
-    "title": "Private airstrips and vessels",
-    "rule 3": "The State Controller has prohibited any aeroplane or aircraft whose flight commences outside Tasmania from landing (other than in the case of an emergency or with prior consent) at any place within Tasmania other than specific airports.",
-    "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/private-airstrips",
-    "date effective": "01 Mar 2021 12:39pm"
-  },
-  {
-    "title": "Maritime ports",
-    "rule 4": "Vessels arriving in Tasmanian waters must provide information to Biosecurity Tasmania",
-    "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/maritime-ports",
-    "date effective": "01 Mar 2021 12:39pm"
-  },
-  {
-    "title": "Quarantine",
-    "rule 5": "Quarantine in Tasmania may be required if a person has been in 'close contact' with a confirmed case of COVID-19, or because they are travelling from identified areas that pose a risk of transmission of COVID-19.",
-    "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/quarantine",
-    "date effective": "01 Mar 2021 12:39pm"
-  },
-  {
-    "title": "Temporary visa holders",
-    "rule 6": "Support, information and resources for Tasmania's temporary visa holders.",
-    "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/temporary-visa-holders",
-    "date effective": "01 Mar 2021 12:39pm"
-  },
-  {
-    "title": "Travelling overseas",
-    "rule 7": "A travel ban is in place for all Australians effective 25 March 2020. You will not be able to depart Australia to travel overseas.",
-    "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/travelling-overseas",
-    "date effective": "01 Mar 2021 12:39pm"
-  },
-  {
-    "title": "International arrivals",
-    "rule 8": "All international arrivals undertake 14 days mandatory quarantine in government-designated accommodation.",
-    "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/international-arrivals",
-    "date effective": "01 Mar 2021 12:39pm"
-  }
-]
+{
+  "state": "Tasmania",
+  "rules": [
+    {
+      "title": "Coming to Tasmania",
+      "rule 1": "Important information for all travellers interested in coming to Tasmania, including the conditions and processes for entering the State.",
+      "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/coming-to-tasmania",
+      "date effective": "01 Mar 2021 12:39pm"
+    },
+    {
+      "title": "Essential Travellers",
+      "rule 2": "Travellers who have spent time in a medium or high-risk area in the 14 days prior to arrival in Tasmania can apply to enter the State as an Essential Traveller.",
+      "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/essential-travellers",
+      "date effective": "01 Mar 2021 12:39pm"
+    },
+    {
+      "title": "Private airstrips and vessels",
+      "rule 3": "The State Controller has prohibited any aeroplane or aircraft whose flight commences outside Tasmania from landing (other than in the case of an emergency or with prior consent) at any place within Tasmania other than specific airports.",
+      "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/private-airstrips",
+      "date effective": "01 Mar 2021 12:39pm"
+    },
+    {
+      "title": "Maritime ports",
+      "rule 4": "Vessels arriving in Tasmanian waters must provide information to Biosecurity Tasmania",
+      "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/maritime-ports",
+      "date effective": "01 Mar 2021 12:39pm"
+    },
+    {
+      "title": "Quarantine",
+      "rule 5": "Quarantine in Tasmania may be required if a person has been in 'close contact' with a confirmed case of COVID-19, or because they are travelling from identified areas that pose a risk of transmission of COVID-19.",
+      "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/quarantine",
+      "date effective": "01 Mar 2021 12:39pm"
+    },
+    {
+      "title": "Temporary visa holders",
+      "rule 6": "Support, information and resources for Tasmania's temporary visa holders.",
+      "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/temporary-visa-holders",
+      "date effective": "01 Mar 2021 12:39pm"
+    },
+    {
+      "title": "Travelling overseas",
+      "rule 7": "A travel ban is in place for all Australians effective 25 March 2020. You will not be able to depart Australia to travel overseas.",
+      "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/travelling-overseas",
+      "date effective": "01 Mar 2021 12:39pm"
+    },
+    {
+      "title": "International arrivals",
+      "rule 8": "All international arrivals undertake 14 days mandatory quarantine in government-designated accommodation.",
+      "link": "https://www.coronavirus.tas.gov.au/travellers-and-visitors/international-arrivals",
+      "date effective": "01 Mar 2021 12:39pm"
+    }
+  ]
+}

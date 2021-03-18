@@ -1,28 +1,28 @@
-[
-  {
-    "state": "New South Wales"
-  },
-  {
-    "rule 1": "Wear\u00a0a face mask. Wearing a mask is mandatory on public transport in the Greater Sydney, Blue Mountains, Central Coast and Wollongong areas. Children 12 years and under are exempt but encouraged to wear a face mask. Mask must be worn on the concourse, at coach/bus stops,\u00a0and while travelling. Penalties will apply."
-  },
-  {
-    "rule 2": "Plan ahead and avoid travelling in the busiest times if you can. If you are not already using public transport in the peak, please do not start now. Services are already close to capacity to allow for physical distancing at these times.\u00a0Off peak times\u00a0are between 10am and 3pm."
-  },
-  {
-    "rule 3": "Check the capacity of services before you travel with\u00a0the\u00a0Trip Planner,\u00a0transport apps\u00a0or\u00a0social media\u00a0to see which services have space available to maintain physical distancing."
-  },
-  {
-    "rule 4": "Practise\u00a0good personal hygiene\u00a0and maintain\u00a0physical distancing."
-  },
-  {
-    "rule 5": "Look for the green dots. These have been placed to show you the safest places to sit and stand."
-  },
-  {
-    "rule 6": "Observe capacity limits: physical distancing capacity limits on services means you may be asked to wait for the next service.",
-    "date effective": "2021-01-29T12:00:00Z"
-  },
-  {
-    "rule 6": "Observe capacity limits: physical distancing capacity limits on services means you may be asked to wait for the next service.",
-    "date effective": "2021-01-29T12:00:00Z"
-  }
-]
+{
+  "state": "New South Wales",
+  "rules": [
+    {
+      "rule 1": "Wear\u00a0a face mask. Wearing a mask is mandatory on public transport in the Greater Sydney, Blue Mountains, Central Coast and Wollongong areas. Children 12 years and under are exempt but encouraged to wear a face mask. Mask must be worn on the concourse, at coach/bus stops,\u00a0and while travelling. Penalties will apply."
+    },
+    {
+      "rule 2": "Plan ahead and avoid travelling in the busiest times if you can. If you are not already using public transport in the peak, please do not start now. Services are already close to capacity to allow for physical distancing at these times.\u00a0Off peak times\u00a0are between 10am and 3pm."
+    },
+    {
+      "rule 3": "Check the capacity of services before you travel with\u00a0the\u00a0Trip Planner,\u00a0transport apps\u00a0or\u00a0social media\u00a0to see which services have space available to maintain physical distancing."
+    },
+    {
+      "rule 4": "Practise\u00a0good personal hygiene\u00a0and maintain\u00a0physical distancing."
+    },
+    {
+      "rule 5": "Look for the green dots. These have been placed to show you the safest places to sit and stand."
+    },
+    {
+      "rule 6": "Observe capacity limits: physical distancing capacity limits on services means you may be asked to wait for the next service.",
+      "date effective": "2021-01-29T12:00:00Z"
+    },
+    {
+      "rule 6": "Observe capacity limits: physical distancing capacity limits on services means you may be asked to wait for the next service.",
+      "date effective": "2021-01-29T12:00:00Z"
+    }
+  ]
+}

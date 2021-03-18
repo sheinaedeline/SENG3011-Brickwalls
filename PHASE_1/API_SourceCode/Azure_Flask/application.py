@@ -137,6 +137,7 @@ def articles():
                     #e.g. passing Sydney will return Sydney, New South Wales, Australia
                     loc = geolocator.geocode(location, language='en')
                     geo_locations = str(loc).split(', ')
+                    #United states for America
                     #check each city, state and country within the geo_locations
                     for geo_location in geo_locations:
                         if article_added:

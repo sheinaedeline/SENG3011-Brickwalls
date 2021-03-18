@@ -2,14 +2,14 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-actData = [{"state": "Australian Captital Territory"}]
-nswData = [{"state": "New South Wales"}]
-ntData = [{"state": "Northern Territory"}]
-qldData = [{"state": "Queensland"}]
-saData = [{"state": "South Australia"}]
-tasData = [{"state": "Tasmania"}]
-vicData = [{"state": "Victoria"}]
-waData = [{"state": "Western Australia"}]
+actData = {"state": "Australian Captital Territory", "rules": []}
+nswData = {"state": "New South Wales", "rules": []}
+ntData = {"state": "Northern Territory", "rules": []}
+qldData = {"state": "Queensland", "rules": []}
+saData = {"state": "South Australia", "rules": []}
+tasData = {"state": "Tasmania", "rules": []}
+vicData = {"state": "Victoria", "rules": []}
+waData = {"state": "Western Australia", "rules": []}
 
 # def scrape_state_restrictions(location=None):
 #     if location == "Australian Capital Territory":
@@ -38,7 +38,7 @@ def scrape_nsw_restriction():
         r = rule.text.strip()
         nswItem['rule ' + str(count)] = r
         count += 1
-        nswData.append(nswItem)
+        nswData["rules"].append(nswItem)
     # rule = restriction.text.strip()
     # for line in rule.splitlines():
     #     print(line)
@@ -52,7 +52,7 @@ def scrape_nsw_restriction():
         if i.has_attr('datetime'):
             date = i['datetime']
             nswItem['date effective'] = date
-            nswData.append(nswItem)
+            nswData["rules"].append(nswItem)
     with open("./state_data/nswTravelRestriction.json", "w") as nswOutfile:
         json.dump(nswData, nswOutfile, indent = 2)
     return nswData
@@ -71,7 +71,7 @@ def scrape_act_restriction():
         act = i.text.strip()
         preventativeActions['action ' + str(strategy)] = act
         strategy += 1
-        actData.append(preventativeActions)
+        actData["rules"].append(preventativeActions)
     restrictions = soup.findAll("p")
     count = 1
     for restriction in restrictions:
@@ -87,7 +87,7 @@ def scrape_act_restriction():
         date = soup.find(id="dateLastUpdated")
         dateEffective = date.text.strip()
         actItem['date effective'] = dateEffective
-        actData.append(actItem)
+        actData["rules"].append(actItem)
     with open("./state_data/actTravelRestriction.json", "w") as actOutfile:
         json.dump(actData, actOutfile, indent = 2)
     return actData
@@ -106,7 +106,7 @@ def scrape_nt_restriction():
         r = rule.text.strip()
         ntItem['rule ' + str(count)] = r
         count += 1
-        ntData.append(ntItem)
+        ntData["rules"].append(ntItem)
     with open("./state_data/ntTravelRestriction.json", "w") as ntOutfile:
         json.dump(ntData, ntOutfile, indent = 2)
     return ntData
@@ -134,7 +134,7 @@ def scrape_qld_restriction():
         qldItem['rule ' + str(count)] = r1
         qldItem['link'] = rule1Link
         count += 1
-        qldData.append(qldItem)
+        qldData["rules"].append(qldItem)
     with open("./state_data/qldTravelRestriction.json", "w") as qldOutfile:
         json.dump(qldData, qldOutfile, indent = 2)
     return qldData
@@ -152,7 +152,7 @@ def scrape_sa_restriction():
         r = rule.text.strip()
         saItem['rule ' + str(count)] = r
         count += 1
-        saData.append(saItem)
+        saData["rules"].append(saItem)
         # for title in restrictionTitles:
         #     rule = title.find("p")
         #     print(rule.text.strip())
@@ -180,7 +180,7 @@ def scrape_tas_restriction():
         effectiveDate = date.text.strip().replace("Last Updated: ", "")
         tasItem['date effective'] = effectiveDate
         count += 1
-        tasData.append(tasItem)
+        tasData["rules"].append(tasItem)
     with open("./state_data/tasTravelRestriction.json", "w") as tasOutfile:
         json.dump(tasData, tasOutfile, indent = 2)
     return tasData
@@ -201,7 +201,7 @@ def scrape_vic_restriction():
         date = soup.find("p", class_="rpl-updated-date")
         effectiveDate = date.text.strip().replace("Reviewed ", "")
         vicItem['date effective'] = effectiveDate
-        vicData.append(vicItem)
+        vicData["rules"].append(vicItem)
     with open("./state_data/vicTravelRestriction.json", "w") as vicOutfile:
         json.dump(vicData, vicOutfile, indent = 2)
     return vicData
@@ -224,7 +224,7 @@ def scrape_wa_restriction():
         waItem['date effective'] = effectiveDate
         waItem['link'] = link
         count += 1
-        waData.append(waItem)
+        waData["rules"].append(waItem)
     with open("./state_data/waTravelRestriction.json", "w") as waOutfile:
         json.dump(waData, waOutfile, indent = 2)
     return waData

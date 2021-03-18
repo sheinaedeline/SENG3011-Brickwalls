@@ -1,15 +1,15 @@
-[
-  {
-    "state": "Western Australia"
-  },
-  {
-    "rule 1": "travellers from Victoria are able to enter WA without self-quarantine",
-    "date effective": "Effective 12.01am, Monday, March 15:",
-    "link": "/government/announcements/victoria-transition-very-low-risk-march-15"
-  },
-  {
-    "rule 2": "capacity limits expanded for venues.",
-    "date effective": "Effective 12.01am, Monday, March 15:",
-    "link": "/government/announcements/changes-capacity-venues"
-  }
-]
+{
+  "state": "Western Australia",
+  "rules": [
+    {
+      "rule 1": "travellers from Victoria are able to enter WA without self-quarantine",
+      "date effective": "Effective 12.01am, Monday, March 15:",
+      "link": "/government/announcements/victoria-transition-very-low-risk-march-15"
+    },
+    {
+      "rule 2": "capacity limits expanded for venues.",
+      "date effective": "Effective 12.01am, Monday, March 15:",
+      "link": "/government/announcements/changes-capacity-venues"
+    }
+  ]
+}
