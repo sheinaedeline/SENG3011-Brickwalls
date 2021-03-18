@@ -58,11 +58,11 @@
             }
           },
           "400": {
-            "description": "Invalid query",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/articlesError"
+                  "$ref": "#/components/schemas/error"
                 },
                 "examples": {
                   "example-1": {
@@ -81,7 +81,7 @@
           }
         },
         "operationId": "articles",
-        "description": "Retrieve articles with the corresponding attributes from the passed parameters",
+        "description": "This endpoint retrieves articles from within the database that will correspond to the queries. The start and end parameters are required, while the rest are optional and will allow for further filtering of results.",
         "parameters": [
           {
             "schema": {
@@ -128,6 +128,92 @@
             "in": "query",
             "name": "location",
             "description": "Is used to be able to search disease reports by a location name (city/country/state etc.), which is a string to be matched with the content in the disease report."
+          }
+        ]
+      }
+    },
+    "/restrictions": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/state_restriction"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "state": "New South Wales",
+                      "rules": [
+                        {
+                          "rule 1": "Wear a face mask. Wearing a mask is mandatory on public transport in the Greater Sydney, Blue Mountains, Central Coast and Wollongong areas. Children 12 years and under are exempt but encouraged to wear a face mask. Mask must be worn on the concourse, at coach/bus stops, and while travelling. Penalties will apply."
+                        },
+                        {
+                          "rule 2": "Plan ahead and avoid travelling in the busiest times if you can. If you are not already using public transport in the peak, please do not start now. Services are already close to capacity to allow for physical distancing at these times. Off peak times are between 10am and 3pm."
+                        },
+                        {
+                          "rule 3": "Check the capacity of services before you travel with the Trip Planner, transport apps or social media to see which services have space available to maintain physical distancing."
+                        },
+                        {
+                          "rule 4": "Practise good personal hygiene and maintain physical distancing."
+                        },
+                        {
+                          "rule 5": "Look for the green dots. These have been placed to show you the safest places to sit and stand."
+                        },
+                        {
+                          "rule 6": "Observe capacity limits: physical distancing capacity limits on services means you may be asked to wait for the next service.",
+                          "date effective": "2021-01-29T12:00:00Z"
+                        },
+                        {
+                          "rule 6": "Observe capacity limits: physical distancing capacity limits on services means you may be asked to wait for the next service.",
+                          "date effective": "2021-01-29T12:00:00Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "timestamp": "2021-03-17",
+                      "status": 400,
+                      "error": "Bad Request",
+                      "message": "Invalid query, invalid states parameter value. Must be nsw, vic, act, nt, qld, sa, tas or wa. e.g. states=wa,nsw",
+                      "path": "/restrictions",
+                      "client request": "/restrictions?states=ils,nsw,tsa"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-restrictions",
+        "description": "This endpoint retrieves restriction rules utilising the webscraper that will extract data from state government websites. The restrictions can be filtered by providing the states parameter which is optional. Passing no parameters will return all restrictions for all states. Currently only supporting Australian states (New South Wales, Victoria, Queensland, Northern Territory, Western Australia, South Australia, Tasmania and Australian Capital Territory)",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 0,
+              "example": "nsw,act,vic,nt,tas,wa,sa,qld"
+            },
+            "in": "query",
+            "name": "states",
+            "description": "Is used to filter what state restrictions that are returned. Only currently supports Australian states."
           }
         ]
       }
@@ -182,8 +268,8 @@
           }
         }
       },
-      "articlesError": {
-        "title": "articlesError",
+      "error": {
+        "title": "error",
         "type": "object",
         "properties": {
           "timestamp": {
@@ -203,6 +289,35 @@
           },
           "client_request": {
             "type": "string"
+          }
+        }
+      },
+      "state_restriction": {
+        "title": "state_restriction",
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "string"
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "rule #": {
+                  "type": "string"
+                },
+                "date effective": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
