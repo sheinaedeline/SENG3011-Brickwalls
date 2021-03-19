@@ -74,6 +74,25 @@ class TestArticleEndpoint(unittest.TestCase):
         assert(data["path"] == "/articles")
         assert(data["client request"] == "/articles?start=20100401&end=20001202")
     
+    #Test if start date and end dates are the same
+    def testSameDate(self):
+        response = requests.get(url + "/articles?start=20000401&end=20211202")
+        data = json.loads((response.content))
+        assert(data["status"] == 200)
+        assert(data["team_name"] == "Team Brickwalls")
+        assert("data" in data)
+        #check if article and report has all correct attributes
+        for article in data["data"]:
+            assert("date_of_publication" in article)
+            assert("headline" in article)
+            assert("main_text" in article)
+            assert("reports" in article)
+            for report in article["reports"]:
+                assert("diseases" in report)
+                assert("event_date" in report)
+                assert("locations" in report)
+                assert("syndromes" in report)
+
     #Test valid dates and check output
     def testValidDate(self):
         response = requests.get(url + "/articles?start=20000401&end=20211202")
