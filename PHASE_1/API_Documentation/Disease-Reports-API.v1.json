@@ -28,26 +28,35 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/article"
+                  "$ref": "#/components/schemas/articlesReturn"
                 },
                 "examples": {
                   "example-1": {
                     "value": {
-                      "url": "http://outbreaknewstoday.com/typhoid-taiwan-reports-1st-domestic-case-of-2021/",
-                      "date_of_publication": "2020-03-13",
-                      "headline": "Typhoid: Taiwan reports 1st domestic case of 2021",
-                      "main_text": "The Taiwan CDC reported Tuesday the first domestic case of typhoid fever in the country for 2021 which is an illness and outbreak.",
-                      "reports": [
+                      "endpoint": "/articles?start=20190909&end=20211212&keyterms=case&location=Taiwan",
+                      "status": 0,
+                      "team_name": "string",
+                      "time": "string",
+                      "time_taken": "string",
+                      "data": [
                         {
-                          "diseases": [
-                            "typhoid"
-                          ],
-                          "syndrome": [
-                            "fever"
-                          ],
-                          "event_date": "2020-03-13",
-                          "locations": [
-                            "Taiwan"
+                          "url": "http://outbreaknewstoday.com/typhoid-taiwan-reports-1st-domestic-case-of-2021/",
+                          "date_of_publication": "2020-03-13",
+                          "headline": "Typhoid: Taiwan reports 1st domestic case of 2021",
+                          "main_text": "The Taiwan CDC reported Tuesday the first domestic case of typhoid fever in the country for 2021 which is an illness and outbreak.",
+                          "reports": [
+                            {
+                              "diseases": [
+                                "typhoid"
+                              ],
+                              "syndrome": [
+                                "fever"
+                              ],
+                              "event_date": "2020-03-13",
+                              "locations": [
+                                "Taiwan"
+                              ]
+                            }
                           ]
                         }
                       ]
@@ -142,35 +151,44 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/state_restriction"
+                  "$ref": "#/components/schemas/restrictionsReturn"
                 },
                 "examples": {
                   "example-1": {
                     "value": {
-                      "state": "New South Wales",
-                      "rules": [
+                      "endpoint": "string",
+                      "status": "string",
+                      "team_name": "string",
+                      "time": "string",
+                      "time_taken": "string",
+                      "data": [
                         {
-                          "rule 1": "Wear a face mask. Wearing a mask is mandatory on public transport in the Greater Sydney, Blue Mountains, Central Coast and Wollongong areas. Children 12 years and under are exempt but encouraged to wear a face mask. Mask must be worn on the concourse, at coach/bus stops, and while travelling. Penalties will apply."
-                        },
-                        {
-                          "rule 2": "Plan ahead and avoid travelling in the busiest times if you can. If you are not already using public transport in the peak, please do not start now. Services are already close to capacity to allow for physical distancing at these times. Off peak times are between 10am and 3pm."
-                        },
-                        {
-                          "rule 3": "Check the capacity of services before you travel with the Trip Planner, transport apps or social media to see which services have space available to maintain physical distancing."
-                        },
-                        {
-                          "rule 4": "Practise good personal hygiene and maintain physical distancing."
-                        },
-                        {
-                          "rule 5": "Look for the green dots. These have been placed to show you the safest places to sit and stand."
-                        },
-                        {
-                          "rule 6": "Observe capacity limits: physical distancing capacity limits on services means you may be asked to wait for the next service.",
-                          "date effective": "2021-01-29T12:00:00Z"
-                        },
-                        {
-                          "rule 6": "Observe capacity limits: physical distancing capacity limits on services means you may be asked to wait for the next service.",
-                          "date effective": "2021-01-29T12:00:00Z"
+                          "state": "New South Wales",
+                          "rules": [
+                            {
+                              "rule 1": "Wear a face mask. Wearing a mask is mandatory on public transport in the Greater Sydney, Blue Mountains, Central Coast and Wollongong areas. Children 12 years and under are exempt but encouraged to wear a face mask. Mask must be worn on the concourse, at coach/bus stops, and while travelling. Penalties will apply."
+                            },
+                            {
+                              "rule 2": "Plan ahead and avoid travelling in the busiest times if you can. If you are not already using public transport in the peak, please do not start now. Services are already close to capacity to allow for physical distancing at these times. Off peak times are between 10am and 3pm."
+                            },
+                            {
+                              "rule 3": "Check the capacity of services before you travel with the Trip Planner, transport apps or social media to see which services have space available to maintain physical distancing."
+                            },
+                            {
+                              "rule 4": "Practise good personal hygiene and maintain physical distancing."
+                            },
+                            {
+                              "rule 5": "Look for the green dots. These have been placed to show you the safest places to sit and stand."
+                            },
+                            {
+                              "rule 6": "Observe capacity limits: physical distancing capacity limits on services means you may be asked to wait for the next service.",
+                              "date effective": "2021-01-29T12:00:00Z"
+                            },
+                            {
+                              "rule 6": "Observe capacity limits: physical distancing capacity limits on services means you may be asked to wait for the next service.",
+                              "date effective": "2021-01-29T12:00:00Z"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -317,6 +335,60 @@
                   "type": "string"
                 }
               }
+            }
+          }
+        }
+      },
+      "articlesReturn": {
+        "title": "articlesReturn",
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer"
+          },
+          "team_name": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          },
+          "time_taken": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/article"
+            }
+          }
+        }
+      },
+      "restrictionsReturn": {
+        "title": "restrictionsReturn",
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "team_name": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          },
+          "time_taken": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/state_restriction"
             }
           }
         }
