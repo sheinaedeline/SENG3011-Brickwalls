@@ -303,7 +303,7 @@ if not pid:
         #wait 1 min
         time.sleep(60) 
 
-scrape_all()
+#scrape_all()
 
 if __name__ == '__main__':
     app.debug = True
