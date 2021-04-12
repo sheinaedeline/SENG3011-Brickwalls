@@ -31,7 +31,7 @@ nav ul {
 
 .sidebar {
     background-color: var(--regBlue);
-    position: fixed;
+    position: sticky;
     width: 100%;
     display: flex;
     flex-direction: row;
