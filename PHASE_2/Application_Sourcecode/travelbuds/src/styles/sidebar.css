@@ -13,7 +13,7 @@ nav {
     position: absolute;
     text-align: left;
     left: 0;
-    top: 100%;
+    top: 0%;
     background-color: var(--regBlue);
     height: 100vh;
     width: 13em;
@@ -68,9 +68,23 @@ nav ul {
     transform: scale(1, 1);
 }
 
-.nav-toggle:checked ~ nav li  {
+.nav-toggle:checked ~ nav li {
     opacity: 1;
     transition: opacity 250ms ease-in-out 250ms;
+}
+
+.nav-toggle:checked ~ .nav-toggle-label span {
+    visibility: hidden;
+}
+
+.nav-toggle:checked ~ .nav-toggle-label span::before {
+    transform: rotate(41deg);
+    visibility: visible;
+}
+
+.nav-toggle:checked ~ .nav-toggle-label span::after {
+    transform: rotate(-41deg);
+    visibility: visible;
 }
 
 .nav-toggle {
@@ -84,6 +98,8 @@ nav ul {
     align-items: flex-end;
     cursor: pointer;
     margin-left: 0.5em;
+    z-index: 99;
+    transition: all 250ms ease-in-out
 }
 
 .nav-toggle-label span,
@@ -92,7 +108,7 @@ nav ul {
     display: block;
     background: white;
     height: 2px;
-    width: 2em;
+    width: 1.25em;
     border-radius: 2px;
     position: relative;
 }
@@ -101,14 +117,19 @@ nav ul {
 .nav-toggle-label span::after {
     content: "";
     position: absolute;
+    transition: all 250ms ease-in-out
 }
 
 .nav-toggle-label span::before {
     bottom: 7px;
+    transform-origin: top left;
+    transform: rotate(0deg)
 }
 
 .nav-toggle-label span::after {
     top: 7px;
+    transform-origin: bottom left;
+    transform: rotate(0deg)
 }
 
 .sidebar-name, .sidebar-group {
