@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import "../styles/sidebar.css"
 import { Link } from "react-router-dom";
 import { ReactComponent as Home} from "../svg/home.svg"
@@ -10,9 +10,30 @@ import { ReactComponent as Trip} from "../svg/tracking.svg"
 import { ReactComponent as User } from "../svg/user.svg"
 
 function Sidebar() {
+    const [scroll, setScroll] = useState("auto")
+    document.body.style.overflow = scroll
+    document.onmousedown = (e) => {
+        let toggle = document.getElementsByClassName("nav-toggle-label")[0]
+        let checkbox = document.getElementById("nav-toggle")
+        if (e.target === toggle) {return}
+        if (!document.getElementsByClassName("sidebar-content")[0].contains(e.target)) {
+            checkbox.checked = false
+            handleScroll(toggle)
+        }
+    }
+
+    const handleScroll = (e) => {
+        if (e.checked) {
+            setScroll("hidden")
+        } 
+        else {
+            setScroll("auto")
+        }
+    }
+
     return (
         <div className="sidebar">
-            <input type="checkbox" id="nav-toggle" className="nav-toggle"></input>
+            <input type="checkbox" id="nav-toggle" className="nav-toggle" onChange={e => handleScroll(e.target)}></input>
             <label htmlFor="nav-toggle" className="nav-toggle-label">
                 <span></span>
             </label>

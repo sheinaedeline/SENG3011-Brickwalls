@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 body {
   margin: 0;
@@ -17,6 +18,7 @@ body {
     --lightGrey: #6A6A6A;
     --darkBlue: #095256;
     --hoverButton: #0d7a80;
+    --dropShadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .button {
@@ -28,7 +30,7 @@ body {
     padding-block: 0.25em;
     font-family: 'Nunito Sans', sans-serif;
     border-color: var(--darkBlue);
-    box-shadow: 2px 2px 4px rgb(97, 97, 97);
+    box-shadow: var(--dropShadow);
     margin-block: 1em;
     cursor: pointer;
 }

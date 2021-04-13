@@ -5,7 +5,7 @@ import Countryprofile from "../components/Countryprofile.js"
 
 function Main() {
     return (
-        <div className="gradient-background">
+        <div>
             <Sidebar></Sidebar>
             <Countryprofile></Countryprofile>
         </div>

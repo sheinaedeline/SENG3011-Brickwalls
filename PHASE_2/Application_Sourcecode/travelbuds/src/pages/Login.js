@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Login() {
     return (
-        <div className="gradient-background">
+        <div className="gradient-background" height="100vh">
             <div className="flex-centre">
                 <div className="loginLogo"></div>
                 <form className="flex-centre">
