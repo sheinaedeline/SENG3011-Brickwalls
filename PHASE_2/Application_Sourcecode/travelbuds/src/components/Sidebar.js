@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "../styles/sidebar.css"
 import { Link } from "react-router-dom";
 import { ReactComponent as Home} from "../svg/home.svg"
@@ -10,8 +10,6 @@ import { ReactComponent as Trip} from "../svg/tracking.svg"
 import { ReactComponent as User } from "../svg/user.svg"
 
 function Sidebar() {
-    const [open, setOpen] = useState("block")
-
     return (
         <div className="sidebar">
             <input type="checkbox" id="nav-toggle" className="nav-toggle"></input>
