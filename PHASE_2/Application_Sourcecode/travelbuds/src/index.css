@@ -12,27 +12,22 @@ body {
 }
 
 :root {
-    --lightBrown: #FED18C;
     --regBlue: #32A6C3;
-    --lightBlue: #ADEBFF;
     --lightGrey: #6A6A6A;
-    --darkBlue: #095256;
-    --hoverButton: #0d7a80;
-    --dropShadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    --hoverButton: #11979e;
+    --dropShadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 .button {
     all: unset;
-    background-color: var(--darkBlue);
+    background-color: var(--regBlue);
     color: white;
-    border-radius: 0.75em;
-    padding-inline: 2em;
-    padding-block: 0.25em;
+    border-radius: 0.22rem;
+    padding-block: 0.75em;
     font-family: 'Nunito Sans', sans-serif;
-    border-color: var(--darkBlue);
-    box-shadow: var(--dropShadow);
     margin-block: 1em;
     cursor: pointer;
+    width: 100%;
 }
 
 .button:active, .button:hover {
@@ -43,14 +38,37 @@ input {
     background-color: white;
     border-radius: 0.3rem;
     border-style: none;
-    padding: 0.3rem;
     font-family: 'Nunito Sans', sans-serif;
-    width: clamp(15em, 20%, 20%);
 }
 
-.gradient-background {
-    height: 100vh;
-    background-image: linear-gradient(to bottom, white, var(--regBlue))
+.input-container {
+    display: flex;
+    flex-direction: row;
+    box-shadow: var(--dropShadow);
+    margin-block: 1em;
+    border-radius: 0.222rem;
+    padding: 0.5rem;
+}
+
+.input-svg {
+    height: 1.6em;
+    width: 1.6em;
+    fill: var(--regBlue);
+    justify-self: center;
+    align-self: center;
+}
+
+.input-label {
+    color: var(--regBlue);
+    font-weight: bold;
+    text-align: left;
+    justify-self: flex-start;
+}
+
+.input-label-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.5rem;
 }
 
 

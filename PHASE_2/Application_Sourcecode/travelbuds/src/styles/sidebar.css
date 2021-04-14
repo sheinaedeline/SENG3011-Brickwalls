@@ -29,6 +29,11 @@ nav ul {
     list-style: none;
 }
 
+.sidebar-search {
+    padding-inline: 10px;
+    padding-block: 5px;
+}
+
 .sidebar {
     background-color: var(--regBlue);
     position: sticky;
@@ -151,6 +156,7 @@ nav ul {
 
 .sidebar-input {
     width: 100%;
+    margin-bottom: 0.3rem;
 }
 
 .sidebar-link {

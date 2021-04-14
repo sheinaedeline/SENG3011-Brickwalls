@@ -13,9 +13,10 @@ function Sidebar() {
     const [scroll, setScroll] = useState("auto")
     document.body.style.overflow = scroll
     document.onmousedown = (e) => {
+        if (!document.getElementsByClassName("sidebar-content")[0]) { return }
         let toggle = document.getElementsByClassName("nav-toggle-label")[0]
         let checkbox = document.getElementById("nav-toggle")
-        if (e.target === toggle) {return}
+        if (e.target === toggle) { return }
         if (!document.getElementsByClassName("sidebar-content")[0].contains(e.target)) {
             checkbox.checked = false
             handleScroll(toggle)
@@ -38,7 +39,7 @@ function Sidebar() {
                 <span></span>
             </label>
             <div className="sidebar-input">
-                <input placeholder="Search Destinations"></input>
+                <input className="sidebar-search" placeholder="Search Destinations"></input>
             </div>
             <nav className="sidebar-content">
                 <ul>
