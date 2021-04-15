@@ -4,6 +4,7 @@ Automat==0.6.0
 beautifulsoup4==4.9.3
 blinker==1.4
 certifi==2020.12.5
+cffi==1.14.5
 chardet==4.0.0
 click==7.1.2
 colorama==0.3.7
@@ -39,8 +40,10 @@ oauthlib==2.0.6
 pyasn1==0.4.2
 pyasn1-modules==0.2.1
 pycountry==20.7.3
+pycparser==2.20
 pycrypto==2.6.1
 Pygments==2.6.1
+pyinotify==0.9.6
 PyJWT==1.5.3
 pymongo==3.11.3
 pyOpenSSL==17.5.0
@@ -55,6 +58,7 @@ schedule==1.0.0
 SecretStorage==2.3.1
 selenium==3.141.0
 service-identity==16.0.0
+simplejson==3.13.2
 six==1.15.0
 soupsieve==2.2
 ssh-import-id==5.7
