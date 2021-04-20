@@ -10,7 +10,7 @@ Z5190299 Sheina Edeline Tengara
 
 ## API
 
-The API is hosted on Azure and can be found here: https://diseasereportapi.azurewebsites.net/
+The API is hosted on Azure and can be found here: https://diseasereportapi.azurewebsites.net/ CURRENTLY DOWN
 
 ## Running API on local server
 
