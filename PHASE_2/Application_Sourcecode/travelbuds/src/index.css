@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+:root {
+    --regBlue: #32A6C3;
+    --lightGrey: #6A6A6A;
+    --hoverButton: #11979e;
+    --dropShadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.button {
+    all: unset;
+    background-color: var(--regBlue);
+    color: white;
+    border-radius: 0.22rem;
+    padding-block: 0.75em;
+    font-family: 'Nunito Sans', sans-serif;
+    margin-block: 1em;
+    cursor: pointer;
+    width: 100%;
+}
+
+.button:active, .button:hover {
+    background-color: var(--hoverButton);
+}
+
+input {
+    background-color: white;
+    border-radius: 0.3rem;
+    border-style: none;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    box-shadow: var(--dropShadow);
+    margin-block: 1em;
+    border-radius: 0.222rem;
+    padding: 0.5rem;
+}
+
+.input-svg {
+    height: 1.6em;
+    width: 1.6em;
+    fill: var(--regBlue);
+    justify-self: center;
+    align-self: center;
+}
+
+.input-label {
+    color: var(--regBlue);
+    font-weight: bold;
+    text-align: left;
+    justify-self: flex-start;
+}
+
+.input-label-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.5rem;
+}
+
+
+

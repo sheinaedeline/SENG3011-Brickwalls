@@ -1,0 +1,49 @@
+img {
+    width: 100%;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.country-profile {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: 22rem;
+}
+
+.destination-name {
+    text-align: left;
+}
+
+h1, h2 {
+    margin-block: 0;
+    margin-left: 1rem;
+}
+
+h1 {
+    font-size: 1.3333rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.img-container {
+    width: clamp(15rem, 90%, 22rem);
+    position: relative;
+    margin-bottom: -5em;
+}
+
+.country-info {
+    position:relative;
+    color: var(--lightGrey);
+    text-align: left;
+    margin-inline: 0.5em;
+    font-family: 'Nunito Sans', sans-serif;
+    width: clamp(22rem, 90%, 30rem);
+}
+

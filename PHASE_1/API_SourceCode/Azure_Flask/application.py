@@ -7,8 +7,11 @@ import os
 import time
 from geopy.geocoders import Nominatim
 from scrape_restrictions import scrape_act_restriction, scrape_nsw_restriction, scrape_nt_restriction, scrape_qld_restriction, scrape_sa_restriction, scrape_tas_restriction, scrape_vic_restriction, scrape_wa_restriction
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 client = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.rmrdh.mongodb.net/test?retryWrites=true&w=majority")
 database = client["database"]
@@ -256,6 +259,7 @@ def restrictions():
         timeTaken = endTime - time
         #log info with data
         resultMsg = {
+            
             "team_name": "Team Brickwalls",
             "time": str(endTime),
             "time_taken": str(timeTaken),

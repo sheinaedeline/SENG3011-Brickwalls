@@ -2,14 +2,14 @@
   "state": "Western Australia",
   "rules": [
     {
-      "rule 1": "travellers from Victoria are able to enter WA without self-quarantine",
-      "date effective": "Effective 12.01am, Monday, March 15:",
-      "link": "/government/announcements/victoria-transition-very-low-risk-march-15"
+      "rule 1": "Travellers from Queensland will be considered a very low risk jurisdiction and are able to enter WA without having to quarantine, but subject to strict conditions",
+      "date effective": "Effective from 12.01am, Monday 19 April, based on the latest health advice and pending no further outbreaks:",
+      "link": "https://www.wa.gov.au/government/announcements/controlled-interstate-border-changes-queensland"
     },
     {
-      "rule 2": "capacity limits expanded for venues.",
-      "date effective": "Effective 12.01am, Monday, March 15:",
-      "link": "/government/announcements/changes-capacity-venues"
+      "rule 2": "Travellers from New Zealand\u00a0will be considered a very low risk jurisdiction and are able to enter WA without having to quarantine, but subject to strict conditions",
+      "date effective": "Effective from 12.01am, Monday 19 April, based on the latest health advice and pending no further outbreaks:",
+      "link": "/government/announcements/wa-government-welcomes-quarantine-free-travel-new-zealand"
     }
   ]
 }
